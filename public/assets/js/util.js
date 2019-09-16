@@ -1,4 +1,6 @@
-(function($) {
+/* global jQuery */
+
+(function ($) {
 
   /**
 	 * Generate an indented list of links from a nav. Meant for use with panel().
@@ -20,8 +22,8 @@
       b.push(
         '<a ' +
 					'class="link depth-' + indent + '"' +
-					( (typeof target !== 'undefined' && target != '') ? ' target="' + target + '"' : '') +
-					( (typeof href !== 'undefined' && href != '') ? ' href="' + href + '"' : '') +
+					( (typeof target !== 'undefined' && target !== '') ? ' target="' + target + '"' : '') +
+					( (typeof href !== 'undefined' && href !== '') ? ' href="' + href + '"' : '') +
 				'>' +
 					'<span class="indent-' + indent + '"></span>' +
 					$this.text() +
@@ -42,7 +44,7 @@
   $.fn.panel = function(userConfig) {
 
     // No elements?
-    if (this.length == 0)
+    if (this.length === 0)
       return $this;
 
     // Multiple elements?
@@ -153,7 +155,7 @@
             href = $a.attr('href'),
             target = $a.attr('target');
 
-          if (!href || href == '#' || href == '' || href == '#' + id)
+          if (!href || href === '#' || href === '' || href === '#' + id)
             return;
 
           // Cancel original event.
@@ -166,7 +168,7 @@
           // Redirect to href.
           window.setTimeout(function() {
 
-            if (target == '_blank')
+            if (target === '_blank')
               window.open(href);
             else
               window.location.href = href;
@@ -287,7 +289,7 @@
     if (config.hideOnEscape)
       $window.on('keydown', function(event) {
 
-        if (event.keyCode == 27)
+        if (event.keyCode === 27)
           $this._hide(event);
 
       });
@@ -307,7 +309,7 @@
       return $(this);
 
     // No elements?
-    if (this.length == 0)
+    if (this.length === 0)
       return $this;
 
     // Multiple elements?
@@ -329,8 +331,8 @@
 
         var i = $(this);
 
-        if (i.val() == ''
-					|| i.val() == i.attr('placeholder'))
+        if (i.val() === ''
+					|| i.val() === i.attr('placeholder'))
           i
             .addClass('polyfill-placeholder')
             .val(i.attr('placeholder'));
@@ -343,7 +345,7 @@
         if (i.attr('name').match(/-polyfill-field$/))
           return;
 
-        if (i.val() == '')
+        if (i.val() === '')
           i
             .addClass('polyfill-placeholder')
             .val(i.attr('placeholder'));
@@ -356,7 +358,7 @@
         if (i.attr('name').match(/-polyfill-field$/))
           return;
 
-        if (i.val() == i.attr('placeholder'))
+        if (i.val() === i.attr('placeholder'))
           i
             .removeClass('polyfill-placeholder')
             .val('');
@@ -377,16 +379,16 @@
             .replace(/type=password/i, 'type=text')
         );
 
-        if (i.attr('id') != '')
+        if (i.attr('id') !== '')
           x.attr('id', i.attr('id') + '-polyfill-field');
 
-        if (i.attr('name') != '')
+        if (i.attr('name') !== '')
           x.attr('name', i.attr('name') + '-polyfill-field');
 
         x.addClass('polyfill-placeholder')
           .val(x.attr('placeholder')).insertAfter(i);
 
-        if (i.val() == '')
+        if (i.val() === '')
           i.hide();
         else
           x.hide();
@@ -398,7 +400,7 @@
 
             var x = i.parent().find('input[name=' + i.attr('name') + '-polyfill-field]');
 
-            if (i.val() == '') {
+            if (i.val() === '') {
 
               i.hide();
               x.show();
@@ -442,7 +444,7 @@
             if (i.attr('name').match(/-polyfill-field$/))
               i.attr('name', '');
 
-            if (i.val() == i.attr('placeholder')) {
+            if (i.val() === i.attr('placeholder')) {
 
               i.removeClass('polyfill-placeholder');
               i.val('');
@@ -478,7 +480,7 @@
 
               x = i.parent().find('input[name=' + i.attr('name') + '-polyfill-field]');
 
-              if (i.val() == '') {
+              if (i.val() === '') {
                 i.hide();
                 x.show();
               }
@@ -498,7 +500,7 @@
             case 'textarea':
               i.val(i.attr('defaultValue'));
 
-              if (i.val() == '') {
+              if (i.val() === '') {
                 i.addClass('polyfill-placeholder');
                 i.val(i.attr('placeholder'));
               }
@@ -538,7 +540,7 @@
         $parent = $e.parent();
 
       // No parent? Bail.
-      if ($parent.length == 0)
+      if ($parent.length === 0)
         return;
 
       // Not moved? Move it.
@@ -552,7 +554,7 @@
         $p = $e.prev();
 
         // Couldn't find anything? Means this element's already at the top, so bail.
-        if ($p.length == 0)
+        if ($p.length === 0)
           return;
 
         // Move element to top of parent.
